@@ -97,35 +97,43 @@
                 var dialog = $('#tour_dialog');
                 var top, left;
 
-                switch (position) {
-                    case "top":
-                        top = target.offset().top - dialog.outerHeight() - this.offsetFudge;
-                        left = target.offset().left + target.outerWidth() / 2 - dialog.outerWidth() / 2;
-                        break;
-                    case "right":
-                        top = target.offset().top;
-                        left = target.offset().left + target.outerWidth() + this.offsetFudge;
-                        break;
-                    case "bottom":
-                        top = target.offset().top + target.outerHeight() + this.offsetFudge;
-                        left = target.offset().left + target.outerWidth() / 2 - dialog.outerWidth() / 2;
-                        break;
-                    case "left":
-                        top = target.offset().top;
-                        left = target.offset().left - dialog.outerWidth() - this.offsetFudge;
-                        break;
-                    case "center":
-                        // screen center hor & vert
-                        top = Math.max(0, (($(window).height() - dialog.outerHeight()) / 2) + $(window).scrollTop());
-                        left = Math.max(0, (($(window).width() - dialog.outerWidth()) / 2) + $(window).scrollLeft());
-                        break;
+                // added check to see if the target exists if not go to next step
+                if (target.length === 0)
+                {
+                    this.nextStep();    
+                } else {
+
+                    switch (position) {
+                        case "top":
+                            top = target.offset().top - dialog.outerHeight() - this.offsetFudge;
+                            left = target.offset().left + target.outerWidth() / 2 - dialog.outerWidth() / 2;
+                            break;
+                        case "right":
+                            top = target.offset().top;
+                            left = target.offset().left + target.outerWidth() + this.offsetFudge;
+                            break;
+                        case "bottom":
+                            top = target.offset().top + target.outerHeight() + this.offsetFudge;
+                            left = target.offset().left + target.outerWidth() / 2 - dialog.outerWidth() / 2;
+                            break;
+                        case "left":
+                            top = target.offset().top;
+                            left = target.offset().left - dialog.outerWidth() - this.offsetFudge;
+                            break;
+                        case "center":
+                            // screen center hor & vert
+                            top = Math.max(0, (($(window).height() - dialog.outerHeight()) / 2) + $(window).scrollTop());
+                            left = Math.max(0, (($(window).width() - dialog.outerWidth()) / 2) + $(window).scrollLeft());
+                            break;
+                    }
+
+                    dialog.children('.arrow').attr('class', 'arrow ' + position);
+                    dialog.css({
+                        top: top,
+                        left: left
+                    });
                 }
 
-                dialog.children('.arrow').attr('class', 'arrow ' + position);
-                dialog.css({
-                    top: top,
-                    left: left
-                });
 
             },
 
