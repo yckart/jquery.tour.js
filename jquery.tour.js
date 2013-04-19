@@ -9,7 +9,7 @@
  * 2013/02/09
 */
 (function($, window){
-    $.tour = function (TourSteps) {
+    $.tour = function (TourSteps, TourCompleteCallback) {
 
         var Tour = {
             startFrom: 0, // override this to start the tour from a specified point
@@ -68,6 +68,9 @@
                 if (this.startFrom == TourSteps.length) {
                     $('#tour_mask').fadeOut(function () {
                         $('.tour_item').removeClass('active');
+                        if (typeof TourCompleteCallback == 'function') {
+                            TourCompleteCallback.call();
+                        }
                     });
                 }
             },
