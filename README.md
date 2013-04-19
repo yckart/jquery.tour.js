@@ -1,13 +1,36 @@
-#No documentation yet!
-(feel free to write a bit about it)
+## Introduction
+TourJS is a jQuery plugin for creating beautiful tours. Items are pulled out of the page, you can require an action from the user before moving to the next step of the tour, and TourJS will automatically scroll to hidden items.
 
 ## Download
- Get the [raw](https://raw.github.com/yckart/jquery.tour.js/master/jquery.tour.js) script, download the complete [package](https://github.com/yckart/jquery.tour.js/zipball/master) or fork it on [GitHub](https://github.com/yckart/jquery.tour.js/).
+Get the [raw](https://raw.github.com/yckart/jquery.tour.js/master/jquery.tour.js) script, download the complete [package](https://github.com/yckart/jquery.tour.js/zipball/master) or fork it on [GitHub](https://github.com/yckart/jquery.tour.js/).
+
+## Usage
+To run a tour, call ```jQuery.tour(tourSteps)```, where ```tourSteps``` is an array of tour steps.
+ 
+## Defining Tour Steps
+Tour Steps should be an array, each item representing one step of the tour.
+ 
+ 
+```javascript 
+[{
+	"msg": "Welcome to TourJS. Let's check out a simple tour.", // tour bubble / dialog text
+	"actionName": false, // name of Mixpanel event used for funnel analysis - spaces are fine, use friendly names. You'll need to setup MP yourself however and include the libs.
+	"selector": "body", // selector for highlighted feature. Comma seperated list = (dialog target, additional items to pop above mask). Don't forget your '.' or '#'
+	"position": "center", // dialog location in relation to target (selector). top, bottom, left, right, (or 'center' which centers to screen)
+	"btnMsg": "Start Tour &raquo", // if you'd like a button on the dialog simply add a message here
+	"nextSelector": "#tour_dialog_btn", // does the user need to do something specific to advance? For example, clicking the tour bubble ok button. Omit for any action click to advance.
+}]
+```
+
+## Optional Callback
+Calling ```jQuery.tour(tourSteps, callback)``` will result in ```callback``` being run after the tour is complete.
+
+## Demo
+See http://yckart.github.io/jquery.tour.js/ for a demo (and check out the source).
 
 ## Support
-
- [@yckart](http://twitter.com/yckart) #jquery #tour
- [http://yckart.com](http://yckart.com/)
+[@yckart](http://twitter.com/yckart) #jquery #tour
+[http://yckart.com](http://yckart.com/)
 
 
 ###License
